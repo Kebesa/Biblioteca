@@ -16,6 +16,13 @@ public class BibliotecaService {
         usuarioDAO = new UsuarioDAO();
     }
 
+    public void Memoria(){
+        memoriaLibro();
+        memoriaPrestamo();
+        memoriaUsuario();
+        memoriaAutores();
+    }
+
     public void memoriaLibro() {
         try (Statement sentencia = conexion.createStatement();
              ResultSet rs = sentencia.executeQuery("SELECT * FROM Libro")) {
