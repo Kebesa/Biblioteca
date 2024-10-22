@@ -5,7 +5,6 @@ public class UsuarioDAO {
     private ArrayList<Usuario> listaUsuarios;
     static Connection conexion = JDBC.getConexion();
 
-
     public ArrayList<Usuario> leerTodo(){
         String consulta="Select * from usuario";
         try {
