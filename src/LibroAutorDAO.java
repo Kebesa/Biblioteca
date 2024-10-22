@@ -67,4 +67,28 @@ public class LibroAutorDAO {
         }
     }
 
+    public void AutoresNull(int ID_autor, int ID_libro) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idAutor = null WHERE idLibro = ? idAutor = ?")) {
+            ps.setInt(2, ID_autor);
+            ps.setInt(1, ID_libro);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    /* Aquí cambiaremos el ID de un jugador a null, que es importante a la hora de borrar algún equipo para que no se borre el jugador, haciendo referencia a que está sin equipo */
+
+    public void cambiarAutorID(int ID_autor_nuevo, int ID_autor_antiguo, int ID_libro) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE jugador SET idAutor = ? WHERE idLibro = ? idAutor = ?")) {
+            ps.setInt(1, ID_autor_nuevo);
+            ps.setInt(2, ID_libro);
+            ps.setInt(3, ID_autor_antiguo);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    /* Aquí cambiaremos el ID de un jugador, que es importante a la hora de borrar algún equipo para que no se borre el jugador */
+
+
 }
