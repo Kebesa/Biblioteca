@@ -1,7 +1,28 @@
 import java.sql.*;
+import java.util.List;
 
 public class AutorDAO {
     static Connection conexion = JDBC.getConexion();
+
+    public void memoriaAutores(List<Autor> autores) {
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM Autor")) {
+            int contador = 0;
+            while (rs.next()) {
+                Autor autor = new Autor(rs.getInt(1),rs.getString(2));
+                for (Autor autor2 : autores) {
+                    if (autor.getID() == autor2.getID())
+                        contador++;
+                }
+                if (contador == 0)
+                    autores.add(autor);
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    /* Con esto sincronizaremos la base de datos a nuestra lista */
+
 
     public void leerAutores() {
         try (Statement sentencia = conexion.createStatement();
