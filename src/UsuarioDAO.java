@@ -5,6 +5,7 @@ public class UsuarioDAO {
     private ArrayList<Usuario> listaUsuarios;
     static Connection conexion = JDBC.getConexion();
 
+    /* Con este método leemos los datos de la tabla Usuario */
     public ArrayList<Usuario> leerTodo(){
         String consulta="Select * from usuario";
         try {
@@ -22,6 +23,7 @@ public class UsuarioDAO {
         return listaUsuarios;
     }
 
+    /* Con este método insertamos los datos en la tabla Usuario */
     public void InsertarUsuario(Usuario u){
         String consulta = "Insert into usuario Values(?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)){
@@ -33,6 +35,7 @@ public class UsuarioDAO {
         }
     }
 
+    /* Con este método borramos los datos de la tabla Alumno con el id*/
     public void BorrarAlumno(int id){
         String consulta = "Delete from usuario where id = ? ";
         try {
@@ -44,6 +47,7 @@ public class UsuarioDAO {
         }
     }
 
+    /* Con este método actualizamos los datos de la tabla Alumno */
     public void ActualizarAlumno(int id, String nombre){
         String consulta = "Update usuario set nombre = ? where id = ?";
         try {
