@@ -5,15 +5,13 @@ import java.util.ArrayList;
 
 public class BibliotecaService {
     static Connection conexion = JDBC.getConexion();
-    private UsuarioDAO usuarioDAO;
-    private PrestamoDAO prestamoDAO;
     private ArrayList<Usuario> listaUsuario;
     private ArrayList<Autor> listaAutores;
     private ArrayList<Libro> listaLibro;
     private ArrayList<Prestamo> listaPrestamo;
 
     public  BibliotecaService(){
-        usuarioDAO = new UsuarioDAO();
+
     }
 
     public void Memoria(){
