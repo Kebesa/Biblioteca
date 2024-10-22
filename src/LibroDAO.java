@@ -66,4 +66,45 @@ public class LibroDAO {
     }
     /* Con este método borraremos todos los libros que queramos especificando el ID del libro en la base de datos */
 
+    public boolean validarID(Libro libro) {
+        int contador = 0;
+        int columnas_numero = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM Libro")) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            columnas_numero = rsmd.getColumnCount();
+            while (rs.next()) {
+                if (libro.getID() == rs.getInt(1)){
+                    contador++;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (contador > 0) {
+            return false;
+        } else
+            return true;
+    }
+    /* Aquí validaremos que el departamento tenga el mismo nombre, cosa que usaremos a la hora de insertar nuevos departamentos */
+
+    public boolean validarLibro(Libro libro) {
+        int contador = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM Libro")) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                if(rs.getString(2).equals(libro.getTitulo()) && rs.getString(3).equals(libro.getIsbn()))
+                    contador++;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (contador > 0) {
+            return false;
+        } else
+            return true;
+    }
+    /* Aquí validaremos que el jugador tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
+
 }

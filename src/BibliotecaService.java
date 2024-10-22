@@ -93,4 +93,19 @@ public class BibliotecaService {
         }
     }
 
+    public ArrayList<Usuario> getListaUsuario() {
+        return listaUsuario;
+    }
+
+    public ArrayList<Autor> getListaAutores() {
+        return listaAutores;
+    }
+
+    public ArrayList<Libro> getListaLibro() {
+        return listaLibro;
+    }
+
+    public ArrayList<Prestamo> getListaPrestamo() {
+        return listaPrestamo;
+    }
 }
