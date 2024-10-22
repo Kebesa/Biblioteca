@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class DAOLibro {
+public class LibroDAO {
     static Connection conexion; /*= DLL.getConexion();*/
 
     public void leerLibros() {

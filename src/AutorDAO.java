@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class DAOAutor {
+public class AutorDAO {
     static Connection conexion; /*= DLL.getConexion();*/
 
     public void leerAutores() {
