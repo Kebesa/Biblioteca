@@ -8,15 +8,15 @@ public class Main {
         AutorDAO Autor_gestion = new AutorDAO();
         UsuarioDAO Usuario_gestion = new  UsuarioDAO();
         PrestamoDAO Prestamo_gestion = new PrestamoDAO();
+        LibroAutorDAO LibroAutor = new LibroAutorDAO();
         boolean sigo = true;
         while (sigo) {
             gestion.Memoria();
             System.out.println("MENÚ DE INTERACCIÓN" + "\n" +
                     "1 - Leer todo" + "\n" +
-                    "2 - Insertar equipos y jugadores" + "\n" +
-                    "3 - Actualizar equipos y jugadores" + "\n" +
-                    "4 - Borrar equipos o jugadores" + "\n" +
-                    "5 - Ordenar equipos por ID o Nombre" + "\n" +
+                    "2 - Insertar todo" + "\n" +
+                    "3 - Actualizar todo" + "\n" +
+                    "4 - Borrar libros, autores, préstamos o usuarios" + "\n" +
                     "* - Salir");
             switch (teclado.next()) {
                 case "1":
@@ -63,56 +63,75 @@ public class Main {
                     break;
                 case "4":
                     System.out.println("¿Qué quieres borrar?" + "\n" +
-                            "1 - Equipos" + "\n" +
-                            "2 - Jugadores" + "\n" +
+                            "1 - Libros" + "\n" +
+                            "2 - Autores" + "\n" +
                             "* - Salir");
                     switch (teclado.next()) {
                         case "1":
-                            System.out.println("Dime los equipos a borrar");
-                            int empleados_numero = teclado.nextInt();
+                            System.out.println("Dime los libros a borrar");
+                            int libros_numero = teclado.nextInt();
                             teclado.nextLine();
                             /* Aquí pondremos los equipos a borrar y la ID y borraremos los que queremos */
-                            for (int i = 0; i < empleados_numero; i++) {
+                            for (int i = 0; i < libros_numero; i++) {
                                 System.out.println("Dime el ID a borrar");
                                 int ID = teclado.nextInt();
-                                if (Jugador_gestion.validarJugadorID(ID))
+                                if (LibroAutor.validarLibroID(ID))
                                     Libro_gestion.borrarLibros(ID);
                                 else {
-                                    System.out.println("El ID a borrar tiene un jugador" + "\n"
+                                    System.out.println("El ID a borrar tiene un autor" + "\n"
                                             + "\n" + "¿Qué desea hacer?"
-                                            + "\n" + "1 - Cambiar el ID del jugador"
-                                            + "\n" + "2 - Borrarlo igualmente (pondrá los jugadores del equipo en null)"
+                                            + "\n" + "1 - Cambiar el ID del autor"
+                                            + "\n" + "2 - Borrarlo igualmente (pondrá el autor del libro en null)"
                                             + "\n" + "* - Salir");
                                     switch (teclado.next()) {
                                         /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
                                         case "1":
                                             teclado.nextLine();
-                                            System.out.println("Dime el nombre del jugador");
-                                            String nombre = teclado.nextLine();
-                                            System.out.println("Dime el nuevo ID del equipo");
+                                            System.out.println("Dime el nuevo ID del autor");
                                             int ID_cambiado = teclado.nextInt();
-                                            Jugador_gestion.cambiarJugadorID(nombre, ID_cambiado);
+                                            LibroAutor.LibroID(ID, LibroAutor.sacarAutorID(ID), ID_cambiado);
                                         case "2":
-                                            Jugador_gestion.jugadoresNull(ID);
+                                            LibroAutor.LibroNull(ID,LibroAutor.sacarAutorID(ID));
                                             Libro_gestion.borrarLibros(ID);
                                             teclado.nextLine();
                                         default:
+                                            break;
                                     }
                                 }
                             }
                             break;
                         case "2":
-                            System.out.println("Dime los jugadores a borrar");
-                            int jugadores_numero = teclado.nextInt();
+                            System.out.println("Dime los autores a borrar");
+                            int autores_numero = teclado.nextInt();
                             teclado.nextLine();
-                            /* Aquí pondremos los jugadores a borrar y la ID y borraremos los que queremos */
-                            for (int i = 0; i < jugadores_numero; i++) {
+                            /* Aquí pondremos los equipos a borrar y la ID y borraremos los que queremos */
+                            for (int i = 0; i < autores_numero; i++) {
                                 System.out.println("Dime el ID a borrar");
                                 int ID = teclado.nextInt();
-                                Autor_gestion.borrarAutores(ID);
+                                if (LibroAutor.validarAutorID(ID))
+                                    Autor_gestion.borrarAutores(ID);
+                                else {
+                                    System.out.println("El ID a borrar tiene un libro" + "\n"
+                                            + "\n" + "¿Qué desea hacer?"
+                                            + "\n" + "1 - Cambiar el ID del libro"
+                                            + "\n" + "2 - Borrarlo igualmente (pondrá el libro del autor en null)"
+                                            + "\n" + "* - Salir");
+                                    switch (teclado.next()) {
+                                        /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
+                                        case "1":
+                                            teclado.nextLine();
+                                            System.out.println("Dime el nuevo ID del libro");
+                                            int ID_cambiado = teclado.nextInt();
+                                            LibroAutor.cambiarAutorID(ID, LibroAutor.sacarLibroID(ID), ID_cambiado);
+                                        case "2":
+                                            LibroAutor.AutoresNull(ID,LibroAutor.sacarLibroID(ID));
+                                            Autor_gestion.borrarAutores(ID);
+                                            teclado.nextLine();
+                                        default:
+                                            break;
+                                    }
+                                }
                             }
-                            break;
-                        default:
                             break;
                     }
                     break;

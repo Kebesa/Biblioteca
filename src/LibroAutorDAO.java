@@ -3,16 +3,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class LibroAutorDAO {
-    private int idLibro;
-    private int idAutor;
     static Connection conexion = JDBC.getConexion();
-
-    public LibroAutorDAO(int idLibro, int idAutor){
-        this.idLibro = idLibro;
-        this.idAutor = idAutor;
-    }
-
-
 
     /* Con este método leemos los datos de la tabla Libro_Autor */
     public void leerTodos(){
@@ -102,7 +93,7 @@ public class LibroAutorDAO {
     /* Aquí cambiaremos el ID de un jugador a null, que es importante a la hora de borrar algún equipo para que no se borre el jugador, haciendo referencia a que está sin equipo */
 
     public void cambiarAutorID(int ID_autor_nuevo, int ID_autor_antiguo, int ID_libro) {
-        try(PreparedStatement ps = conexion.prepareStatement("UPDATE jugador SET idAutor = ? WHERE idLibro = ? idAutor = ?")) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idAutor = ? WHERE idLibro = ? idAutor = ?")) {
             ps.setInt(1, ID_autor_nuevo);
             ps.setInt(2, ID_libro);
             ps.setInt(3, ID_autor_antiguo);
@@ -113,5 +104,70 @@ public class LibroAutorDAO {
     }
     /* Aquí cambiaremos el ID de un jugador, que es importante a la hora de borrar algún equipo para que no se borre el jugador */
 
+    public boolean validarLibroID(int ID) {
+        int contador = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM libro_autor")) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                if(rs.getInt(1) == ID)
+                    contador++;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (contador > 0) {
+            return false;
+        } else
+            return true;
+    }
+    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+
+    public int sacarAutorID(int ID) {
+        int resultado = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM libro_autor WHERE idLibro = " + ID)) {
+            while (rs.next()) {
+                resultado = rs.getInt(2);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+
+    public boolean validarAutorID(int ID) {
+        int contador = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM libro_autor")) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                if(rs.getInt(2) == ID)
+                    contador++;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (contador > 0) {
+            return false;
+        } else
+            return true;
+    }
+    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+
+    public int sacarLibroID(int ID) {
+        int resultado = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM libro_autor WHERE idAutor = " + ID)) {
+            while (rs.next()) {
+                resultado = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
 
 }

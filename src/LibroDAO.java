@@ -106,5 +106,4 @@ public class LibroDAO {
             return true;
     }
     /* Aquí validaremos que el jugador tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
-
 }
