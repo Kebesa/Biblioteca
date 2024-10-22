@@ -12,6 +12,8 @@ public class LibroAutorDAO {
         this.idAutor = idAutor;
     }
 
+
+
     /* Con este método leemos los datos de la tabla Libro_Autor */
     public void leerTodos(){
         String consulta = "Select * from libro_autor";
@@ -64,6 +66,27 @@ public class LibroAutorDAO {
             st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void LibroNull(int ID_autor, int ID_libro) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idLibro = null WHERE idLibro = ? idAutor = ?")) {
+            ps.setInt(1, ID_libro);
+            ps.setInt(2, ID_autor);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void LibroID(int ID_autor, int ID_libroAntiguo, int idLibroNuevo) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idLibro = ? WHERE idLibro = ? idAutor = ?")) {
+            ps.setInt(1, idLibroNuevo);
+            ps.setInt(1, ID_libroAntiguo);
+            ps.setInt(2, ID_autor);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
