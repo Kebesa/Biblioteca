@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class JDBC {
-    static String URL = "jdbc:mariadb://localhost/";
+    static String URL = "jdbc:mariadb://localhost:3306/biblioteca";
     static String USR = "root";
     static String PASS = "";
 
