@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class LibroDAO {
-    static Connection conexion; /*= DLL.getConexion();*/
+    static Connection conexion = JDBC.getConexion();
 
     public void leerLibros() {
         try (Statement sentencia = conexion.createStatement();

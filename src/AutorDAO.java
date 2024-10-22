@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class AutorDAO {
-    static Connection conexion; /*= DLL.getConexion();*/
+    static Connection conexion = JDBC.getConexion();
 
     public void leerAutores() {
         try (Statement sentencia = conexion.createStatement();

@@ -4,20 +4,7 @@ import java.util.ArrayList;
 
 public class PrestamoDAO {
     private  ArrayList<Prestamo> listaPrestamo;
-    private String BD = "biblioteca";
-    private String URL ="jdbc:mariadb://localhost/" + BD;
-    private String USER = "root";
-    private String PASS = "";
-    private Connection conexion;
-
-    public PrestamoDAO (){
-        listaPrestamo = new ArrayList<>();
-        try {
-            conexion = DriverManager.getConnection(URL, USER, PASS);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    static Connection conexion = JDBC.getConexion();
 
     public ArrayList<Prestamo> leerTodos(){
         String consulta = "Select * from prestamo";

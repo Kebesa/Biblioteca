@@ -2,20 +2,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class UsuarioDAO {
-    private String bd = "biblioteca";
-    private String url="jdbc:mariadb://localhost/" + bd;
-    private String user ="root";
-    private String password = "";
     private ArrayList<Usuario> listaUsuarios;
-    private Connection conexion;
-    public UsuarioDAO(){
-        listaUsuarios = new ArrayList<Usuario>();
-        try {
-            conexion = DriverManager.getConnection( url, user, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    static Connection conexion = JDBC.getConexion();
+
 
     public ArrayList<Usuario> leerTodo(){
         String consulta="Select * from usuario";
