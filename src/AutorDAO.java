@@ -89,7 +89,7 @@ public class AutorDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el departamento tenga el mismo nombre, cosa que usaremos a la hora de insertar nuevos departamentos */
+    /* Aquí validaremos que el autor tenga el mismo id, cosa que usaremos a la hora de insertar nuevos autores */
 
     public boolean validarAutor(Autor autor) {
         int contador = 0;
@@ -108,17 +108,6 @@ public class AutorDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el jugador tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
-
-    public void cambiarJugadorID(String nombre, int ID) {
-        try(PreparedStatement ps = conexion.prepareStatement("UPDATE jugador SET idEquipo = ? WHERE nombre = ?")) {
-            ps.setInt(1, ID);
-            ps.setString(2, nombre);
-            ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    /* Aquí cambiaremos el ID de un jugador, que es importante a la hora de borrar algún equipo para que no se borre el jugador */
+    /* Aquí validaremos que el autor tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
 
 }

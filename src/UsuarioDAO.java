@@ -5,7 +5,7 @@ public class UsuarioDAO {
     private ArrayList<Usuario> listaUsuarios;
     static Connection conexion = JDBC.getConexion();
 
-    /* Con este método leemos los datos de la tabla Usuario */
+
     public ArrayList<Usuario> leerTodo(){
         String consulta="Select * from usuario";
         try {
@@ -22,8 +22,9 @@ public class UsuarioDAO {
         }
         return listaUsuarios;
     }
+    /* Con este método leemos los datos de la tabla Usuario */
 
-    /* Con este método insertamos los datos en la tabla Usuario */
+
     public void InsertarUsuario(Usuario u){
         String consulta = "Insert into usuario Values(?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)){
@@ -34,8 +35,9 @@ public class UsuarioDAO {
             throw new RuntimeException(e);
         }
     }
+    /* Con este método insertamos los datos en la tabla Usuario */
 
-    /* Con este método borramos los datos de la tabla Alumno con el id*/
+
     public void BorrarUsuario(int id){
         String consulta = "Delete from usuario where id = ? ";
         try {
@@ -46,8 +48,9 @@ public class UsuarioDAO {
             throw new RuntimeException(e);
         }
     }
+    /* Con este método borramos los datos de la tabla Usuario con el id*/
 
-    /* Con este método actualizamos los datos de la tabla Alumno */
+
     public void ActualizarUsuario(Usuario usuario){
         String consulta = "Update usuario set nombre = ? where id = ?";
         try {
@@ -59,6 +62,7 @@ public class UsuarioDAO {
             throw new RuntimeException(e);
         }
     }
+    /* Con este método actualizamos los datos de la tabla Usuario */
 
     public boolean validarID(Usuario usuario) {
         int contador = 0;
@@ -80,6 +84,6 @@ public class UsuarioDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el departamento tenga el mismo nombre, cosa que usaremos a la hora de insertar nuevos departamentos */
+    /* Aquí validaremos que el Usuario tenga el mismo id , cosa que usaremos a la hora de insertar nuevos Usuarios */
 
 }

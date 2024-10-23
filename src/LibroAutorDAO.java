@@ -106,7 +106,7 @@ public class LibroAutorDAO {
             System.out.println(e.getMessage());
         }
     }
-    /* Aquí cambiaremos el ID de un jugador, que es importante a la hora de borrar algún equipo para que no se borre el jugador */
+    /* Aquí cambiaremos el ID de un autor*/
 
     public boolean validarLibroID(int ID) {
         int contador = 0;
@@ -125,7 +125,7 @@ public class LibroAutorDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+    /* Aquí validaremos que el id del autor tenga el mismo ID, cosa que usaremos a la hora de borrar libros */
 
     public int sacarAutorID(int ID) {
         int resultado = 0;
@@ -139,7 +139,7 @@ public class LibroAutorDAO {
         }
         return resultado;
     }
-    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+    /* Aquí sacamos el id del autor */
 
     public boolean validarAutorID(int ID) {
         int contador = 0;
@@ -172,6 +172,6 @@ public class LibroAutorDAO {
         }
         return resultado;
     }
-    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+    /* Aquí sacaremos el id del libro */
 
 }
