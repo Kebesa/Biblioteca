@@ -59,4 +59,27 @@ public class UsuarioDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public boolean validarID(Usuario usuario) {
+        int contador = 0;
+        int columnas_numero = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM Usuario")) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            columnas_numero = rsmd.getColumnCount();
+            while (rs.next()) {
+                if (usuario.getId() == rs.getInt(1)){
+                    contador++;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (contador > 0) {
+            return false;
+        } else
+            return true;
+    }
+    /* Aquí validaremos que el departamento tenga el mismo nombre, cosa que usaremos a la hora de insertar nuevos departamentos */
+
 }

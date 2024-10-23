@@ -68,4 +68,45 @@ public class PrestamoDAO {
         }
     }
 
+    public boolean validarID(Prestamo prestamo) {
+        int contador = 0;
+        int columnas_numero = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM Prestamo")) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            columnas_numero = rsmd.getColumnCount();
+            while (rs.next()) {
+                if (prestamo.getId() == rs.getInt(1)){
+                    contador++;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (contador > 0) {
+            return false;
+        } else
+            return true;
+    }
+    /* Aquí validaremos que el departamento tenga el mismo nombre, cosa que usaremos a la hora de insertar nuevos departamentos */
+
+    public boolean validarPrestamo(Prestamo prestamo) {
+        int contador = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM Prestamo")) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                if(rs.getDate(2).equals(Date.valueOf(prestamo.getFechaInicio())) && rs.getDate(3).equals(Date.valueOf(prestamo.getFechaFin())) && rs.getInt(4) == prestamo.getUsuarioId() && rs.getInt(5) == prestamo.getLibroId());
+                    contador++;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (contador > 0) {
+            return false;
+        } else
+            return true;
+    }
+    /* Aquí validaremos que el jugador tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
+
 }
