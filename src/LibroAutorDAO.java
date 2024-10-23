@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class LibroAutorDAO {
     static Connection conexion = JDBC.getConexion();
 
-    /* Con este método leemos los datos de la tabla Libro_Autor */
+
     public void leerTodos(){
         String consulta = "Select * from libro_autor";
         try {
@@ -19,8 +19,8 @@ public class LibroAutorDAO {
             throw new RuntimeException(e);
         }
     }
+    /* Con este método leemos los datos de la tabla Libro_Autor */
 
-    /* Con este método insertmos los datos a la tabla libroAutor */
     public void InsertarPrestamo(LibroAutor libroAutor){
         String consulta = "Insert into libro_autor Values(?, ?)";
         try (PreparedStatement ps = conexion.prepareStatement(consulta)){
@@ -31,8 +31,9 @@ public class LibroAutorDAO {
             throw new RuntimeException(e);
         }
     }
+    /* Con este método insertmos los datos a la tabla libroAutor */
 
-    /* Con este método borramos los datos de la tabla Libro_Autor */
+
     public void BorrarLibroAutor(int idLibro, int idAutor){
         String consulta = "Delete from prestamo where idLibro = ?, idAutor = ?";
         try {
@@ -44,8 +45,8 @@ public class LibroAutorDAO {
             throw new RuntimeException(e);
         }
     }
+    /* Con este método borramos los datos de la tabla Libro_Autor */
 
-    /* Con este método actualizamos los datos de la tabla Libro_Autor */
     public void ActualizarLibroAutor(int idLibroNueva, int idAutorNuevo, LibroAutor libroAutor){
         String consulta = "Update prestamo set idLibro = ?, idAutor = ? where idLibro = ?, idAutor = ?";
         try {
@@ -59,6 +60,7 @@ public class LibroAutorDAO {
             throw new RuntimeException(e);
         }
     }
+    /* Con este método actualizamos los datos de la tabla Libro_Autor */
 
     public void LibroNull(int ID_autor, int ID_libro) {
         try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idLibro = null WHERE idLibro = ? idAutor = ?")) {
@@ -69,6 +71,7 @@ public class LibroAutorDAO {
             System.out.println(e.getMessage());
         }
     }
+    /* Con este método ponemos el id del libro a null*/
 
     public void LibroID(int ID_autor, int ID_libroAntiguo, int idLibroNuevo) {
         try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idLibro = ? WHERE idLibro = ? idAutor = ?")) {
@@ -80,6 +83,7 @@ public class LibroAutorDAO {
             System.out.println(e.getMessage());
         }
     }
+    /* Con este método cambiamos el id del libro*/
 
     public void AutoresNull(int ID_autor, int ID_libro) {
         try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idAutor = null WHERE idLibro = ? idAutor = ?")) {
@@ -90,7 +94,7 @@ public class LibroAutorDAO {
             System.out.println(e.getMessage());
         }
     }
-    /* Aquí cambiaremos el ID de un jugador a null, que es importante a la hora de borrar algún equipo para que no se borre el jugador, haciendo referencia a que está sin equipo */
+    /* Aquí cambiaremos el ID de un autor a null, que es importante a la hora de borrar algún libro para que no se borre el autor, haciendo referencia a que está sin equipo */
 
     public void cambiarAutorID(int ID_autor_nuevo, int ID_autor_antiguo, int ID_libro) {
         try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idAutor = ? WHERE idLibro = ? idAutor = ?")) {
