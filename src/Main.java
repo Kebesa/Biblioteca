@@ -119,11 +119,63 @@ public class Main {
                                             teclado.nextLine();
                                             System.out.println("Dime el nuevo ID del autor");
                                             int ID_cambiado = teclado.nextInt();
-                                            LibroAutor.LibroID(ID, LibroAutor.sacarAutorID(ID), ID_cambiado);
+                                            LibroAutor.LibroID(LibroAutor.sacarAutorID(ID), ID, ID_cambiado);
+                                            if (Libro_gestion.validarLibroID(ID)){
+                                                Libro_gestion.borrarLibros(ID);
+                                                teclado.nextLine();
+                                            } else {
+                                                System.out.println("El ID a borrar tiene un préstamo" + "\n"
+                                                        + "\n" + "¿Qué desea hacer?"
+                                                        + "\n" + "1 - Cambiar el ID del préstamo"
+                                                        + "\n" + "2 - Borrarlo igualmente (pondrá el préstamo del libro en null)"
+                                                        + "\n" + "* - Salir");
+                                                switch (teclado.next()) {
+                                                    /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
+                                                    case "1":
+                                                        teclado.nextLine();
+                                                        System.out.println("Dime el nuevo ID del préstamo");
+                                                        int ID_cambiado_prestamo = teclado.nextInt();
+                                                        Libro_gestion.cambiarLibroID(ID_cambiado_prestamo, ID, Libro_gestion.sacarPrestamoID(ID));
+                                                        Libro_gestion.borrarLibros(ID);
+                                                        teclado.nextLine();
+                                                    case "2":
+                                                        Libro_gestion.LibroNull(LibroAutor.sacarLibroID(ID),ID);
+                                                        Libro_gestion.borrarLibros(ID);
+                                                        teclado.nextLine();
+                                                    default:
+                                                        break;
+                                                }
+                                            }
+                                            break;
                                         case "2":
-                                            LibroAutor.LibroNull(ID,LibroAutor.sacarAutorID(ID));
-                                            Libro_gestion.borrarLibros(ID);
-                                            teclado.nextLine();
+                                            LibroAutor.LibroNull(LibroAutor.sacarAutorID(ID),ID);
+                                            if (Libro_gestion.validarLibroID(ID)){
+                                                Libro_gestion.borrarLibros(ID);
+                                                teclado.nextLine();
+                                            } else {
+                                                System.out.println("El ID a borrar tiene un préstamo" + "\n"
+                                                        + "\n" + "¿Qué desea hacer?"
+                                                        + "\n" + "1 - Cambiar el ID del préstamo"
+                                                        + "\n" + "2 - Borrarlo igualmente (pondrá el préstamo del libro en null)"
+                                                        + "\n" + "* - Salir");
+                                                switch (teclado.next()) {
+                                                    /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
+                                                    case "1":
+                                                        teclado.nextLine();
+                                                        System.out.println("Dime el nuevo ID del préstamo");
+                                                        int ID_cambiado_prestamo = teclado.nextInt();
+                                                        Libro_gestion.cambiarLibroID(ID_cambiado_prestamo, ID, Libro_gestion.sacarPrestamoID(ID));
+                                                        Libro_gestion.borrarLibros(ID);
+                                                        teclado.nextLine();
+                                                    case "2":
+                                                        Libro_gestion.LibroNull(LibroAutor.sacarLibroID(ID),ID);
+                                                        Libro_gestion.borrarLibros(ID);
+                                                        teclado.nextLine();
+                                                    default:
+                                                        break;
+                                                }
+                                            }
+                                            break;
                                         default:
                                             break;
                                     }
@@ -152,9 +204,11 @@ public class Main {
                                             teclado.nextLine();
                                             System.out.println("Dime el nuevo ID del libro");
                                             int ID_cambiado = teclado.nextInt();
-                                            LibroAutor.cambiarAutorID(ID, LibroAutor.sacarLibroID(ID), ID_cambiado);
+                                            LibroAutor.cambiarAutorID(ID_cambiado, ID, LibroAutor.sacarLibroID(ID));
+                                            Autor_gestion.borrarAutores(ID);
+                                            teclado.nextLine();
                                         case "2":
-                                            LibroAutor.AutoresNull(ID,LibroAutor.sacarLibroID(ID));
+                                            LibroAutor.AutoresNull(LibroAutor.sacarLibroID(ID),ID);
                                             Autor_gestion.borrarAutores(ID);
                                             teclado.nextLine();
                                         default:
@@ -182,7 +236,7 @@ public class Main {
                             for (int i = 0; i < usuarios_numero; i++) {
                                 System.out.println("Dime el ID a borrar");
                                 int ID = teclado.nextInt();
-                                if (LibroAutor.validarAutorID(ID))
+                                if (Usuario_gestion.validarUsuarioID(ID))
                                     Usuario_gestion.BorrarUsuario(ID);
                                 else {
                                     System.out.println("El ID a borrar tiene un préstamo" + "\n"
@@ -196,10 +250,12 @@ public class Main {
                                             teclado.nextLine();
                                             System.out.println("Dime el nuevo ID del préstamo");
                                             int ID_cambiado = teclado.nextInt();
-                                            LibroAutor.cambiarAutorID(ID, LibroAutor.sacarLibroID(ID), ID_cambiado);
+                                            Usuario_gestion.cambiarUsuarioID(ID_cambiado, ID, Usuario_gestion.sacarPrestamoID(ID));
+                                            Usuario_gestion.BorrarUsuario(ID);
+                                            teclado.nextLine();
                                         case "2":
-                                            LibroAutor.AutoresNull(ID,LibroAutor.sacarLibroID(ID));
-                                            Autor_gestion.borrarAutores(ID);
+                                            Usuario_gestion.UsuarioNull(Usuario_gestion.sacarPrestamoID(ID),ID);
+                                            Usuario_gestion.BorrarUsuario(ID);
                                             teclado.nextLine();
                                         default:
                                             break;

@@ -105,4 +105,60 @@ public class UsuarioDAO {
     }
     /* Aquí validaremos que el jugador tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
 
+    public boolean validarUsuarioID(int ID) {
+        int contador = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM prestamo")) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                if(rs.getInt(4) == ID)
+                    contador++;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (contador > 0) {
+            return false;
+        } else
+            return true;
+    }
+    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+
+    public void cambiarUsuarioID(int ID_usuario_nuevo, int ID_usuario_antiguo, int ID_prestamo) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE prestamo SET usuarioId = ? WHERE id = ? AND usuarioId = ?")) {
+            ps.setInt(1, ID_usuario_nuevo);
+            ps.setInt(2, ID_prestamo);
+            ps.setInt(3, ID_usuario_antiguo);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    /* Aquí cambiaremos el ID de un autor*/
+
+    public void UsuarioNull(int ID_prestamo, int ID_usuario) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE prestamo SET usuarioId = null WHERE id = ? AND usuarioId = ?")) {
+            ps.setInt(2, ID_prestamo);
+            ps.setInt(1, ID_usuario);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    /* Aquí cambiaremos el ID de un autor a null, que es importante a la hora de borrar algún libro para que no se borre el autor, haciendo referencia a que está sin equipo */
+
+    public int sacarPrestamoID(int ID) {
+        int resultado = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM prestamo WHERE usuarioId = " + ID)) {
+            while (rs.next()) {
+                resultado = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+    /* Aquí sacaremos el id del libro */
+
 }

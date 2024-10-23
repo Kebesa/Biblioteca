@@ -35,7 +35,7 @@ public class LibroAutorDAO {
 
 
     public void BorrarLibroAutor(int idLibro, int idAutor){
-        String consulta = "Delete from prestamo where idLibro = ?, idAutor = ?";
+        String consulta = "Delete from prestamo where idLibro = ? AND idAutor = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(consulta);
             ps.setInt(1, idLibro);
@@ -48,7 +48,7 @@ public class LibroAutorDAO {
     /* Con este método borramos los datos de la tabla Libro_Autor */
 
     public void ActualizarLibroAutor(int idLibroNueva, int idAutorNuevo, LibroAutor libroAutor){
-        String consulta = "Update prestamo set idLibro = ?, idAutor = ? where idLibro = ?, idAutor = ?";
+        String consulta = "Update prestamo set idLibro = ?, idAutor = ? where idLibro = ? AND idAutor = ?";
         try {
             PreparedStatement st = conexion.prepareStatement(consulta);
             st.setInt(1, idLibroNueva);
@@ -63,7 +63,7 @@ public class LibroAutorDAO {
     /* Con este método actualizamos los datos de la tabla Libro_Autor */
 
     public void LibroNull(int ID_autor, int ID_libro) {
-        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idLibro = null WHERE idLibro = ? idAutor = ?")) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idLibro = null WHERE idLibro = ? AND idAutor = ?")) {
             ps.setInt(1, ID_libro);
             ps.setInt(2, ID_autor);
             ps.executeUpdate();
@@ -86,7 +86,7 @@ public class LibroAutorDAO {
     /* Con este método cambiamos el id del libro*/
 
     public void AutoresNull(int ID_autor, int ID_libro) {
-        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idAutor = null WHERE idLibro = ? idAutor = ?")) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idAutor = null WHERE idLibro = ? AND idAutor = ?")) {
             ps.setInt(2, ID_autor);
             ps.setInt(1, ID_libro);
             ps.executeUpdate();
