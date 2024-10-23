@@ -103,7 +103,7 @@ public class UsuarioDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el jugador tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
+    /* Aquí validaremos que el Usuario tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
 
     public boolean validarUsuarioID(int ID) {
         int contador = 0;
@@ -122,7 +122,7 @@ public class UsuarioDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+    /* Aquí validaremos que el Usuario tenga el mismo ID, cosa que usaremos a la hora de borrar prestamos */
 
     public void cambiarUsuarioID(int ID_usuario_nuevo, int ID_usuario_antiguo, int ID_prestamo) {
         try(PreparedStatement ps = conexion.prepareStatement("UPDATE prestamo SET usuarioId = ? WHERE id = ? AND usuarioId = ?")) {
@@ -134,7 +134,7 @@ public class UsuarioDAO {
             System.out.println(e.getMessage());
         }
     }
-    /* Aquí cambiaremos el ID de un autor*/
+    /* Aquí cambiaremos el ID de un Usuario*/
 
     public void UsuarioNull(int ID_prestamo, int ID_usuario) {
         try(PreparedStatement ps = conexion.prepareStatement("UPDATE prestamo SET usuarioId = null WHERE id = ? AND usuarioId = ?")) {
@@ -145,7 +145,7 @@ public class UsuarioDAO {
             System.out.println(e.getMessage());
         }
     }
-    /* Aquí cambiaremos el ID de un autor a null, que es importante a la hora de borrar algún libro para que no se borre el autor, haciendo referencia a que está sin equipo */
+    /* Aquí cambiaremos el ID de un usuario a null, que es importante a la hora de borrar algún prestamo para que no se borre el autor, haciendo referencia a que está sin prestamo */
 
     public int sacarPrestamoID(int ID) {
         int resultado = 0;

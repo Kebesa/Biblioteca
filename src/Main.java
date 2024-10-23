@@ -101,7 +101,6 @@ public class Main {
                             System.out.println("Dime los libros a borrar");
                             int libros_numero = teclado.nextInt();
                             teclado.nextLine();
-                            /* Aquí pondremos los equipos a borrar y la ID y borraremos los que queremos */
                             for (int i = 0; i < libros_numero; i++) {
                                 System.out.println("Dime el ID a borrar");
                                 int ID = teclado.nextInt();
@@ -114,7 +113,7 @@ public class Main {
                                             + "\n" + "2 - Borrarlo igualmente (pondrá el autor del libro en null)"
                                             + "\n" + "* - Salir");
                                     switch (teclado.next()) {
-                                        /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
+                                        /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un autor con el mismo ID al que hemos puesto */
                                         case "1":
                                             teclado.nextLine();
                                             System.out.println("Dime el nuevo ID del autor");
@@ -130,7 +129,7 @@ public class Main {
                                                         + "\n" + "2 - Borrarlo igualmente (pondrá el préstamo del libro en null)"
                                                         + "\n" + "* - Salir");
                                                 switch (teclado.next()) {
-                                                    /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
+                                                    /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un prestamo con el mismo ID al que hemos puesto */
                                                     case "1":
                                                         teclado.nextLine();
                                                         System.out.println("Dime el nuevo ID del préstamo");
@@ -159,7 +158,7 @@ public class Main {
                                                         + "\n" + "2 - Borrarlo igualmente (pondrá el préstamo del libro en null)"
                                                         + "\n" + "* - Salir");
                                                 switch (teclado.next()) {
-                                                    /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
+                                                    /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un prestamo con el mismo ID al que hemos puesto */
                                                     case "1":
                                                         teclado.nextLine();
                                                         System.out.println("Dime el nuevo ID del préstamo");
@@ -186,7 +185,7 @@ public class Main {
                             System.out.println("Dime los autores a borrar");
                             int autores_numero = teclado.nextInt();
                             teclado.nextLine();
-                            /* Aquí pondremos los equipos a borrar y la ID y borraremos los que queremos */
+                            /* Aquí pondremos los autores a borrar y la ID y borraremos los que queremos */
                             for (int i = 0; i < autores_numero; i++) {
                                 System.out.println("Dime el ID a borrar");
                                 int ID = teclado.nextInt();
@@ -199,7 +198,7 @@ public class Main {
                                             + "\n" + "2 - Borrarlo igualmente (pondrá el libro del autor en null)"
                                             + "\n" + "* - Salir");
                                     switch (teclado.next()) {
-                                        /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
+                                        /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un libro con el mismo ID al que hemos puesto */
                                         case "1":
                                             teclado.nextLine();
                                             System.out.println("Dime el nuevo ID del libro");
@@ -221,7 +220,7 @@ public class Main {
                             System.out.println("Dime los préstamos a borrar");
                             int prestamo_numero = teclado.nextInt();
                             teclado.nextLine();
-                            /* Aquí pondremos los equipos a borrar y la ID y borraremos los que queremos */
+                            /* Aquí pondremos los prestamos a borrar y la ID y borraremos los que queremos */
                             for (int i = 0; i < prestamo_numero; i++) {
                                 System.out.println("Dime el ID a borrar");
                                 int ID = teclado.nextInt();
@@ -232,7 +231,7 @@ public class Main {
                             System.out.println("Dime los usuarios a borrar");
                             int usuarios_numero = teclado.nextInt();
                             teclado.nextLine();
-                            /* Aquí pondremos los equipos a borrar y la ID y borraremos los que queremos */
+                            /* Aquí pondremos los usuarios a borrar y la ID y borraremos los que queremos */
                             for (int i = 0; i < usuarios_numero; i++) {
                                 System.out.println("Dime el ID a borrar");
                                 int ID = teclado.nextInt();
@@ -245,7 +244,7 @@ public class Main {
                                             + "\n" + "2 - Borrarlo igualmente (pondrá el préstamo del usuario en null)"
                                             + "\n" + "* - Salir");
                                     switch (teclado.next()) {
-                                        /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
+                                        /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un prestamo con el mismo ID al que hemos puesto */
                                         case "1":
                                             teclado.nextLine();
                                             System.out.println("Dime el nuevo ID del préstamo");
