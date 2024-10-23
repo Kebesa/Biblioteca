@@ -43,7 +43,7 @@ public class PrestamoDAO {
     }
 
     /* Con este método borramos los datos de la tabla prestamo */
-    public void BorrarAlumno(int id){
+    public void BorrarPrestamo(int id){
         String consulta = "Delete from prestamo where id = ? ";
         try {
             PreparedStatement ps = conexion.prepareStatement(consulta);
@@ -55,13 +55,13 @@ public class PrestamoDAO {
     }
 
     /* Con este método actualizamos los datos de la tabla prestamo */
-    public void ActualizarAlumno(int id, LocalDate fechaInicio,LocalDate fechaFin){
+    public void ActualizarPrestamo(Prestamo prestamo){
         String consulta = "Update prestamo set fechaInicio = ?, fechaFin = ? where id = ?";
         try {
             PreparedStatement st = conexion.prepareStatement(consulta);
-            st.setDate(1, Date.valueOf(fechaInicio));
-            st.setDate(2, Date.valueOf(fechaFin));
-            st.setInt(3, id);
+            st.setDate(1, Date.valueOf(prestamo.getFechaInicio()));
+            st.setDate(2, Date.valueOf(prestamo.getFechaFin()));
+            st.setInt(3, prestamo.getId());
             st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

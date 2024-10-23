@@ -36,7 +36,7 @@ public class UsuarioDAO {
     }
 
     /* Con este método borramos los datos de la tabla Alumno con el id*/
-    public void BorrarAlumno(int id){
+    public void BorrarUsuario(int id){
         String consulta = "Delete from usuario where id = ? ";
         try {
             PreparedStatement ps = conexion.prepareStatement(consulta);
@@ -48,12 +48,12 @@ public class UsuarioDAO {
     }
 
     /* Con este método actualizamos los datos de la tabla Alumno */
-    public void ActualizarAlumno(int id, String nombre){
+    public void ActualizarUsuario(Usuario usuario){
         String consulta = "Update usuario set nombre = ? where id = ?";
         try {
             PreparedStatement st = conexion.prepareStatement(consulta);
-            st.setString(1, nombre);
-            st.setInt(2, id);
+            st.setString(1, usuario.getNombre());
+            st.setInt(2, usuario.getId());
             st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
