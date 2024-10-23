@@ -78,14 +78,14 @@ public class Main {
                         if(!Prestamo_gestion.validarPrestamo(prestamo)) {
                             System.out.println("El préstamo tiene los mismos datos");
                         } else {
-                            Prestamo_gestion.ActualizarAlumno(autor);
+                            Prestamo_gestion.ActualizarPrestamo(prestamo);
                         }
                     }
-                    for (Autor autor : gestion.getListaAutores()) {
-                        if(!Autor_gestion.validarAutor(autor)) {
-                            System.out.println("El autor tiene los mismos datos");
+                    for (Usuario usuario : gestion.getListaUsuario()) {
+                        if(!Usuario_gestion.validarUsuario(usuario)) {
+                            System.out.println("El usuario tiene los mismos datos");
                         } else {
-                            Autor_gestion.actualizarAutores(autor);
+                            Usuario_gestion.ActualizarUsuario(usuario);
                         }
                     }
                     break;
@@ -93,6 +93,8 @@ public class Main {
                     System.out.println("¿Qué quieres borrar?" + "\n" +
                             "1 - Libros" + "\n" +
                             "2 - Autores" + "\n" +
+                            "3 - Préstamos" + "\n" +
+                            "4 - Usuarios" + "\n" +
                             "* - Salir");
                     switch (teclado.next()) {
                         case "1":
@@ -161,6 +163,49 @@ public class Main {
                                 }
                             }
                             break;
+                        case "3":
+                            System.out.println("Dime los préstamos a borrar");
+                            int prestamo_numero = teclado.nextInt();
+                            teclado.nextLine();
+                            /* Aquí pondremos los equipos a borrar y la ID y borraremos los que queremos */
+                            for (int i = 0; i < prestamo_numero; i++) {
+                                System.out.println("Dime el ID a borrar");
+                                int ID = teclado.nextInt();
+                                Prestamo_gestion.BorrarPrestamo(ID);
+                            }
+                            break;
+                        case "4":
+                            System.out.println("Dime los usuarios a borrar");
+                            int usuarios_numero = teclado.nextInt();
+                            teclado.nextLine();
+                            /* Aquí pondremos los equipos a borrar y la ID y borraremos los que queremos */
+                            for (int i = 0; i < usuarios_numero; i++) {
+                                System.out.println("Dime el ID a borrar");
+                                int ID = teclado.nextInt();
+                                if (LibroAutor.validarAutorID(ID))
+                                    Usuario_gestion.BorrarUsuario(ID);
+                                else {
+                                    System.out.println("El ID a borrar tiene un préstamo" + "\n"
+                                            + "\n" + "¿Qué desea hacer?"
+                                            + "\n" + "1 - Cambiar el ID del préstamo"
+                                            + "\n" + "2 - Borrarlo igualmente (pondrá el préstamo del usuario en null)"
+                                            + "\n" + "* - Salir");
+                                    switch (teclado.next()) {
+                                        /* Aquí pondremos las opciones que podremos hacer si el programa encuentra a un empleado con el mismo ID al que hemos puesto */
+                                        case "1":
+                                            teclado.nextLine();
+                                            System.out.println("Dime el nuevo ID del préstamo");
+                                            int ID_cambiado = teclado.nextInt();
+                                            LibroAutor.cambiarAutorID(ID, LibroAutor.sacarLibroID(ID), ID_cambiado);
+                                        case "2":
+                                            LibroAutor.AutoresNull(ID,LibroAutor.sacarLibroID(ID));
+                                            Autor_gestion.borrarAutores(ID);
+                                            teclado.nextLine();
+                                        default:
+                                            break;
+                                    }
+                                }
+                            }
                     }
                     break;
                 default:

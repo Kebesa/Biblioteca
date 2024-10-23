@@ -96,7 +96,7 @@ public class PrestamoDAO {
              ResultSet rs = sentencia.executeQuery("SELECT * FROM Prestamo")) {
             ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
-                if(rs.getDate(2).equals(Date.valueOf(prestamo.getFechaInicio())) && rs.getDate(3).equals(Date.valueOf(prestamo.getFechaFin())) && rs.getInt(4) == prestamo.getUsuarioId() && rs.getInt(5) == prestamo.getLibroId());
+                if(rs.getDate(2).equals(Date.valueOf(prestamo.getFechaInicio())) && rs.getDate(3).equals(Date.valueOf(prestamo.getFechaFin())) && rs.getInt(4) == prestamo.getUsuarioId() && rs.getInt(5) == prestamo.getLibroId())
                     contador++;
             }
         } catch (Exception e) {

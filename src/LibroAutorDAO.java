@@ -74,7 +74,7 @@ public class LibroAutorDAO {
     /* Con este método ponemos el id del libro a null*/
 
     public void LibroID(int ID_autor, int ID_libroAntiguo, int idLibroNuevo) {
-        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idLibro = ? WHERE idLibro = ? idAutor = ?")) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idLibro = ? WHERE idLibro = ? AND idAutor = ?")) {
             ps.setInt(1, idLibroNuevo);
             ps.setInt(1, ID_libroAntiguo);
             ps.setInt(2, ID_autor);
@@ -97,7 +97,7 @@ public class LibroAutorDAO {
     /* Aquí cambiaremos el ID de un autor a null, que es importante a la hora de borrar algún libro para que no se borre el autor, haciendo referencia a que está sin equipo */
 
     public void cambiarAutorID(int ID_autor_nuevo, int ID_autor_antiguo, int ID_libro) {
-        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idAutor = ? WHERE idLibro = ? idAutor = ?")) {
+        try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idAutor = ? WHERE idLibro = ? AND idAutor = ?")) {
             ps.setInt(1, ID_autor_nuevo);
             ps.setInt(2, ID_libro);
             ps.setInt(3, ID_autor_antiguo);

@@ -86,4 +86,23 @@ public class UsuarioDAO {
     }
     /* Aquí validaremos que el Usuario tenga el mismo id , cosa que usaremos a la hora de insertar nuevos Usuarios */
 
+    public boolean validarUsuario(Usuario usuario) {
+        int contador = 0;
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet rs = sentencia.executeQuery("SELECT * FROM Usuario")) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            while (rs.next()) {
+                if(rs.getString(2).equals(usuario.getNombre()))
+                    contador++;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (contador > 0) {
+            return false;
+        } else
+            return true;
+    }
+    /* Aquí validaremos que el jugador tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
+
 }
