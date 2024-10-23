@@ -86,7 +86,7 @@ public class LibroDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el departamento tenga el mismo nombre, cosa que usaremos a la hora de insertar nuevos departamentos */
+    /* Aquí validaremos que el Libro tenga el mismo id, cosa que usaremos a la hora de insertar nuevos Libros */
 
     public boolean validarLibro(Libro libro) {
         int contador = 0;
@@ -105,7 +105,7 @@ public class LibroDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el jugador tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
+    /* Aquí validaremos que el Libro tenga el mismo nombre e isbn  */
 
     public boolean validarLibroID(int ID) {
         int contador = 0;
