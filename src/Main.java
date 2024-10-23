@@ -44,18 +44,46 @@ public class Main {
                             Autor_gestion.insertarAutores(autor);
                         }
                     }
+                    for (Prestamo prestamo : gestion.getListaPrestamo()) {
+                        if (!Prestamo_gestion.validarID(prestamo)) {
+                            System.out.println("Ya hay un préstamo con ese ID");
+                        } else {
+                            Prestamo_gestion.InsertarPrestamo(prestamo);
+                        }
+                    }
+                    for (Usuario usuario : gestion.getListaUsuario()) {
+                        if (!Usuario_gestion.validarID(usuario)) {
+                            System.out.println("Ya hay un usuario con ese ID");
+                        } else {
+                            Usuario_gestion.InsertarUsuario(usuario);
+                        }
+                    }
                     break;
                 case "3":
                     for (Libro libro : gestion.getListaLibro()) {
                         if(!Libro_gestion.validarLibro(libro)) {
-                            System.out.println("El equipo tiene los mismos datos");
+                            System.out.println("El libro tiene los mismos datos");
                         } else {
                             Libro_gestion.actualizarLibros(libro);
                         }
                     }
                     for (Autor autor : gestion.getListaAutores()) {
                         if(!Autor_gestion.validarAutor(autor)) {
-                            System.out.println("El jugador tiene los mismos datos");
+                            System.out.println("El autor tiene los mismos datos");
+                        } else {
+                            Autor_gestion.actualizarAutores(autor);
+                        }
+                    }
+                    for (Prestamo prestamo : gestion.getListaPrestamo()) {
+                        if(!Prestamo_gestion.validarPrestamo(prestamo)) {
+                            System.out.println("El préstamo tiene los mismos datos");
+                        } else {
+                            Prestamo_gestion.ActualizarAlumno(autor);
+                        }
+                    }
+                    for (Autor autor : gestion.getListaAutores()) {
+                        if(!Autor_gestion.validarAutor(autor)) {
+                            System.out.println("El autor tiene los mismos datos");
                         } else {
                             Autor_gestion.actualizarAutores(autor);
                         }
