@@ -94,7 +94,7 @@ public class LibroAutorDAO {
             System.out.println(e.getMessage());
         }
     }
-    /* Aquí cambiaremos el ID de un autor a null, que es importante a la hora de borrar algún libro para que no se borre el autor, haciendo referencia a que está sin equipo */
+    /* Aquí cambiaremos el ID de un autor a null, que es importante a la hora de borrar algún libro para que no se borre el autor, haciendo referencia a que está sin libro */
 
     public void cambiarAutorID(int ID_autor_nuevo, int ID_autor_antiguo, int ID_libro) {
         try(PreparedStatement ps = conexion.prepareStatement("UPDATE libro_autor SET idAutor = ? WHERE idLibro = ? AND idAutor = ?")) {
@@ -158,7 +158,7 @@ public class LibroAutorDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+    /* Aquí validaremos que el autor tenga el mismo ID, cosa que usaremos a la hora de borrar libros */
 
     public int sacarLibroID(int ID) {
         int resultado = 0;

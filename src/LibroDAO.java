@@ -124,7 +124,7 @@ public class LibroDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el jugador tenga el mismo ID, cosa que usaremos a la hora de borrar equipos */
+    /* Aquí validaremos que el libro tenga el mismo ID, cosa que usaremos a la hora de borrar libros */
 
     public void cambiarLibroID(int ID_usuario_nuevo, int ID_usuario_antiguo, int ID_prestamo) {
         try(PreparedStatement ps = conexion.prepareStatement("UPDATE prestamo SET libroId = ? WHERE id = ? AND libroId = ?")) {
@@ -147,7 +147,7 @@ public class LibroDAO {
             System.out.println(e.getMessage());
         }
     }
-    /* Aquí cambiaremos el ID de un autor a null, que es importante a la hora de borrar algún libro para que no se borre el autor, haciendo referencia a que está sin equipo */
+    /* Aquí cambiaremos el ID de un libro a null, que es importante a la hora de borrar algún libro para que no se borre el autor */
 
     public int sacarPrestamoID(int ID) {
         int resultado = 0;

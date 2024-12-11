@@ -88,7 +88,7 @@ public class PrestamoDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el departamento tenga el mismo nombre, cosa que usaremos a la hora de insertar nuevos departamentos */
+    /* Aquí validaremos que el Prestamo tenga el mismo id, cosa que usaremos a la hora de prestamos nuevos */
 
     public boolean validarPrestamo(Prestamo prestamo) {
         int contador = 0;
@@ -107,6 +107,6 @@ public class PrestamoDAO {
         } else
             return true;
     }
-    /* Aquí validaremos que el jugador tenga el mismo nombre, cosa que usaremos a la hora de actualizarlo */
+    /* Aquí validaremos que el prestamo tenga la misma fecha, id del usuario y del libro, cosa que usaremos a la hora de actualizarlo */
 
 }
